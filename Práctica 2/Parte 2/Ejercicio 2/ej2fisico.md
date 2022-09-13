@@ -4,7 +4,7 @@ Club (<u>Razón social</u>, Nombre, Dirección)
 
 Deportista (<u>DNI</u>, CUIT, Nombre, Apellido, Club(Fk))
 
-Futbolista (<u>DNI(Fk)</u>, Apodo, Cant. goles)
+Futbolista (<u>DNI</u>, Apodo, Cant. goles)
 
 Compañeros (<u>DNI Jugador, DNI Compañero</u>)
 

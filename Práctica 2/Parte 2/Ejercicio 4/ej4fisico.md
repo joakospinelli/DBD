@@ -10,8 +10,8 @@ Título (<u>Nombre</u>)
 
 Títulos persona (<u>DNI, Nombre título</u>)
 
-Periodista deportivo (<u>DNI</u>, Matrícula)
+Periodista deportivo (<u>Matrícula</u>, DNI(Fk))
 
 Club (<u>Nombre</u>)
 
-Cubre (<u>Nombre club, Matrícula periodista</u>)
+Cubre (<u>Matrícula periodista</u>, Nombre club)
