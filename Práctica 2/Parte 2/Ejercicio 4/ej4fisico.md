@@ -1,17 +1,17 @@
 # Modelo físico
 
-Persona (<u>DNI</u>, Nombre, Apellido)
+Persona (<ins>DNI</ins>, Nombre, Apellido)
 
-Medio (<u>Razón social</u>, Dirección)
+Medio (<ins>Razón social</ins>, Dirección)
 
-Trabaja (<u>DNI, Razón social medio</u>)
+Trabaja (<ins>DNI, Razón social medio</ins>)
 
-Título (<u>Nombre</u>)
+Título (<ins>Nombre</ins>)
 
-Títulos persona (<u>DNI, Nombre título</u>)
+Títulos persona (<ins>DNI, Nombre título</ins>)
 
-Periodista deportivo (<u>Matrícula</u>, DNI(Fk))
+Periodista deportivo (<ins>Matrícula</ins>, DNI(Fk))
 
-Club (<u>Nombre</u>)
+Club (<ins>Nombre</ins>)
 
-Cubre (<u>Matrícula periodista</u>, Nombre club)
+Cubre (<ins>Matrícula periodista</ins>, Nombre club)

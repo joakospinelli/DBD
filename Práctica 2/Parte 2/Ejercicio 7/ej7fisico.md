@@ -1,11 +1,11 @@
 # Modelo físico
 
-Persona (<u>DNI</u>, Nombre y apellido, Teléfono, Dirección)
+Persona (<ins>DNI</ins>, Nombre y apellido, Teléfono, Dirección)
 
-Instructor (<u>DNI</u>, Fecha nacimiento, Cant. hijos)
+Instructor (<ins>DNI</ins>, Fecha nacimiento, Cant. hijos)
 
-Cliente (<u>DNI</u>, Código, Email?)
+Cliente (<ins>DNI</ins>, Código, Email?)
 
-Curso (<u>Nombre, Fecha, DNI Instructor</u>)
+Curso (<ins>Nombre, Fecha, DNI Instructor</ins>)
 
-Contenido(<u>Nombre</u>)
+Contenido(<ins>Nombre</ins>)

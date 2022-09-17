@@ -1,17 +1,17 @@
 # Modelo físico
 
-Empleado (<u>DNI</u>, CUIT, Nombre, Apellido)
+Empleado (<ins>DNI</ins>, CUIT, Nombre, Apellido)
 
-No Docente(<u>DNI</u>, Categoría)
+No Docente(<ins>DNI</ins>, Categoría)
 
-Historial (<u>DNI No Docente, Código área</u>, Fecha inicio, Fecha fin?)
+Historial (<ins>DNI No Docente, Código área</ins>, Fecha inicio, Fecha fin?)
 
-Área(<u>Código</u>, Nombre, Descripción)
+Área(<ins>Código</ins>, Nombre, Descripción)
 
-Teléfonos Área (<u>Código área, Nro. teléfono</u>)
+Teléfonos Área (<ins>Código área, Nro. teléfono</ins>)
 
-Teléfono(<u>Número</u>)
+Teléfono(<ins>Número</ins>)
 
-Docente (<u>DNI</u>, Legajo, Materia)
+Docente (<ins>DNI</ins>, Legajo, Materia)
 
-Materia (<u>Código</u>, Descripción)
+Materia (<ins>Código</ins>, Descripción)

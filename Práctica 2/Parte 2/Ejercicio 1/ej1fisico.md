@@ -1,12 +1,12 @@
 # Modelo físico
 
-Artista (<u>DNI</u>, Dirección, Nombre, Apellido, Fecha nacimiento, Web?)
+Artista (<ins>DNI</ins>, Dirección, Nombre, Apellido, Fecha nacimiento, Web?)
 
-Evento (<u>Nombre, fecha</u>, Descripción, DNI Director(Fk), Tipo evento(Fk))
+Evento (<ins>Nombre, fecha</ins>, Descripción, DNI Director(Fk), Tipo evento(Fk))
 
-Actores(<u> Artista, evento</u>)
+Actores(<ins> Artista, evento</ins>)
 
-Teléfono (<u>Número</u>, Usuario)
+Teléfono (<ins>Número</ins>, Usuario)
 
-Tipo de evento (<u>Nombre</u>)
+Tipo de evento (<ins>Nombre</ins>)
 

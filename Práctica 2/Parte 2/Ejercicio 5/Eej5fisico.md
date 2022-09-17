@@ -1,15 +1,15 @@
 # Modelo físico
 
-Persona (<u>DNI</u>, Nombre, Apellido, Email?)
+Persona (<ins>DNI</ins>, Nombre, Apellido, Email?)
 
-Docente (<u>DNI</u>, Año desde que ocupa cargo)
+Docente (<ins>DNI</ins>, Año desde qinse ocinspa cargo)
 
-Alumno (<u>DNI</u>, Legajo)
+Alinsmno (<ins>DNI</ins>, Legajo)
 
-Título (<u>Código</u>, Nombre)
+Títinslo (<ins>Código</ins>, Nombre)
 
-Títulos docente (<u>DNI Docente, Código título</u>, Fecha)
+Títinslos docente (<ins>DNI Docente, Código títinslo</ins>, Fecha)
 
-Carrera (<u>Código</u>, Nombre)
+Carrera (<ins>Código</ins>, Nombre)
 
-Inscriptos (<u>DNI Alumno, Código carrera</u>)
+Inscriptos (<ins>DNI Alinsmno, Código carrera</ins>)

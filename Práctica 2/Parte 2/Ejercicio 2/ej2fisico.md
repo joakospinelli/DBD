@@ -1,18 +1,18 @@
 # Modelo físico
 
-Club (<u>Razón social</u>, Nombre, Dirección)
+Club (<ins>Razón social</ins>, Nombre, Dirección)
 
-Deportista (<u>DNI</u>, CUIT, Nombre, Apellido, Club(Fk))
+Deportista (<ins>DNI</ins>, CUIT, Nombre, Apellido, Club(Fk))
 
-Futbolista (<u>DNI</u>, Apodo, Cant. goles)
+Futbolista (<ins>DNI</ins>, Apodo, Cant. goles)
 
-Compañeros (<u>DNI Jugador, DNI Compañero</u>)
+Compañeros (<ins>DNI Jugador, DNI Compañero</ins>)
 
-Posición(<u>Nombre</u>)
+Posición(<ins>Nombre</ins>)
 
-Posiciones Jugador (<u>DNI, Posición</u>)
+Posiciones Jugador (<ins>DNI, Posición</ins>)
 
-Color (<u>Color HEX</u>, Nombre)
+Color (<ins>Color HEX</ins>, Nombre)
 
-Colores club (<u>Club, color</u>)
+Colores club (<ins>Club, color</ins>)
 

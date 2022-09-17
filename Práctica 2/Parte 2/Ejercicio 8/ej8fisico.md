@@ -1,15 +1,15 @@
 # Modelo físico
 
-Persona (<u>DNI</u>, Nombre y apellido, Dirección, Email?)
+Persona (<ins>DNI</ins>, Nombre y apellido, Dirección, Email?)
 
-Teléfono (<u>Número</u>, DNI Persona(Fk))
+Teléfono (<ins>Número</ins>, DNI Persona(Fk))
 
-Fisiatra (<u>DNI</u>, Matrícula)
+Fisiatra (<ins>DNI</ins>, Matrícula)
 
-Paciente (<u>DNI</u>, Peso, Estatura, Fecha nacimiento, DNI Fisiatra(Fk))
+Paciente (<ins>DNI</ins>, Peso, Estatura, Fecha nacimiento, DNI Fisiatra(Fk))
 
-Historia clínica (<u>DNI Paciente</u>, Resumen)
+Historia clínica (<ins>DNI Paciente</ins>, Resumen)
 
-Lesión (<u>Nombre</u>)
+Lesión (<ins>Nombre</ins>)
 
-Historia lesiones (<u>Nombre lesión, DNI Paciente</u>, Fecha)
+Historia lesiones (<ins>Nombre lesión, DNI Paciente</ins>, Fecha)
