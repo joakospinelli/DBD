@@ -2,14 +2,14 @@
 
 Persona (<ins>DNI</ins>, Nombre, Apellido, Email?)
 
-Docente (<ins>DNI</ins>, Año desde qinse ocinspa cargo)
+Docente (<ins>DNI(Fk)</ins>, Año desde que ocupa cargo)
 
-Alinsmno (<ins>DNI</ins>, Legajo)
+Alumno (<ins>Legajo</ins>, DNI(Fk))
 
-Títinslo (<ins>Código</ins>, Nombre)
+Título (<ins>Código</ins>, Nombre)
 
-Títinslos docente (<ins>DNI Docente, Código títinslo</ins>, Fecha)
+Títulos docente (<ins>DNI Docente, Código título</ins>, Fecha)
 
 Carrera (<ins>Código</ins>, Nombre)
 
-Inscriptos (<ins>DNI Alinsmno, Código carrera</ins>)
+Inscriptos (<ins>DNI Alumno, Código carrera</ins>)

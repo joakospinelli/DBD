@@ -4,12 +4,12 @@ Persona (<ins>DNI</ins>, Nombre y apellido, Dirección, Email?)
 
 Teléfono (<ins>Número</ins>, DNI Persona(Fk))
 
-Fisiatra (<ins>DNI</ins>, Matrícula)
+Fisiatra (<ins>Matrícula</ins>, DNI(Fk))
 
-Paciente (<ins>DNI</ins>, Peso, Estatura, Fecha nacimiento, DNI Fisiatra(Fk))
+Paciente (<ins>DNI(Fk)</ins>, Peso, Estatura, Fecha nacimiento, Matrícula fisiatra(Fk))
 
 Historia clínica (<ins>DNI Paciente</ins>, Resumen)
 
 Lesión (<ins>Nombre</ins>)
 
-Historia lesiones (<ins>Nombre lesión, DNI Paciente</ins>, Fecha)
+Historial lesiones (<ins>Nombre lesión, DNI Paciente</ins>, Fecha)

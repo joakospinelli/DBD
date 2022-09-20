@@ -4,9 +4,9 @@ Artista (<ins>DNI</ins>, Dirección, Nombre, Apellido, Fecha nacimiento, Web?)
 
 Evento (<ins>Nombre, fecha</ins>, Descripción, DNI Director(Fk), Tipo evento(Fk))
 
-Actores(<ins> Artista, evento</ins>)
+Actores(<ins>Artista, evento</ins>)
 
-Teléfono (<ins>Número</ins>, Usuario)
+Teléfono (<ins>Número</ins>, DNI Usuario(Fk))
 
 Tipo de evento (<ins>Nombre</ins>)
 
