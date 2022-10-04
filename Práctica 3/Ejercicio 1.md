@@ -20,47 +20,53 @@ Producto(<ins>idProducto</ins>, descripcion, precio, nombreP, stock)
 
 # 4. Listar nombre, apellido, DNI, teléfono y dirección de clientes que no realizaron compras durante 2020.
 
-π nombre,apellido,dni,teléfono,dirección ((π idCliente (σ fecha < 01/01/2020 and fecha > 31/12/2020  (Factura))) |x| Cliente)
+Clientes2020 <= Cliente |x| π <sub>idCliente</sub> (σ <sub>fecha >= '2020/01/01' and fecha =< '2020/12/31'</sub> (Factura) )
+
+π <sub>nombre,apellido,DNI,teléfono,dirección</sub> ([Cliente |x| π <sub>idCliente</sub>(Factura)] - Clientes2020)
+
+*// Tengo que hacer lo de "Cliente |x| π <sub>idCliente</sub>(Factura)" antes la diferencia porque podría tener clientes que no compraron nunca*
 
 # 5. Listar nombre, apellido, DNI, teléfono y dirección de clientes que solo tengan compras durante 2020.
 
-compraron2020 <= π nombre,apellido,dni,teléfono,dirección (π idCliente (σ fecha >= '2020/01/01' and fecha =< '2020/12/31' (Factura)) |x| Cliente)
+π <sub>DNI, nombre, apellido, teléfono, dirección</sub> (Cliente - [NoCompraron2020 |x| π <sub>idCliente</sub> (Factura)])
 
-noCompraron2020 <= π nombre,apellido,dni,teléfono,dirección ((π idCliente (σ fecha < '01/01/2020' and fecha > '31/12/2020'  (Factura))) |x| Cliente)
-
-compraron2020 - noCompraron2020
 
 # 6. Listar nombre, descripción, precio y stock de productos no vendidos.
 
-productosVendidos <= Producto |x| (π idProducto(Detalle) )
+productosVendidos <= Producto |x| [π <sub>idProducto</sub> (Detalle) ]
 
-π nombreP,descripcion,precio,stock (Producto - productosVendidos)
+π <sub>nombreP,descripcion,precio,stock</sub> (Producto - productosVendidos)
 
 # 7. Listar nombre, apellido, DNI, teléfono y dirección de clientes que no compraron el producto con nombre ‘ProductoX’ durante 2020.
 
 *// En estos creo que podría usar el %*
 
-facturasConProdX2020 <= (σ fecha >= '2020/01/01' and fecha <= '2020/12/31' (Factura)) |x| ( π nroTicket ((Detalle) |x| (π idProducto [σ nombreP = 'ProductoX'(Producto)]) ) )
+VentasProductoX <= Detalle |X| [𝝅 <sub>idProducto</sub> (𝛔 <sub>nombreP = ‘ProductoX’</sub> (Producto)]
 
-π nombre,apellido,DNI,telefono,direccion (Cliente - (Cliente |x| [π idCliente (facturasConProdX2020)] ) )
+FacturasProdX2020 <= [𝛔 <sub>fecha >= '2020/01/01' and fecha <= '2020/12/31'</sub> (Factura) ] |x| [𝝅 <sub>nroTicket</sub> (VentasProductoX) ]
+
+ClientesProdX2020 <= Cliente |x| [ 𝝅 <sub>idCliente</sub> (FacturasProdX2020) ]
+
+𝝅 <sub>nombre, apellido, DNI, teléfono, dirección</sub> (Cliente - ClientesProdX2020)
 
 # 8. Listar nombre, apellido, DNI, teléfono y dirección de clientes que compraron el producto con nombre ‘Producto A’’ y no compraron el producto con nombre ‘Producto B’.
 
-facturasConProdA <= (Factura)) |x| ( π nroTicket ((Detalle) |x| (π idProducto [σ nombreP = 'Producto A'(Producto)]) ) )
+FacturasProductoA <= π <sub>nroTicket</sub> ([ Detalle |x| ( π <sub>idProducto</sub> [σ <sub>nombreP = 'Producto A'</sub> (Producto)] ) ])
 
-facturasConProdB <= (Factura)) |x| ( π nroTicket ((Detalle) |x| (π idProducto [σ nombreP = 'Producto B'(Producto)]) ) )
+FacturasProductoB <= π <sub>nroTicket</sub> ([ Detalle |x| ( π <sub>idProducto</sub> [σ <sub>nombreP = 'Producto B'</sub> (Producto)] ) ])
 
-compraronProdA <= Cliente |x| (π idCliente (facturasConProdA) )
+CompraronProdA <= Cliente |x| (π <sub>idCliente</sub> (FacturasProductoA) )
 
-compraronProdB <= Cliente |x| (π idCliente (facturasConProdA) )
+CompraronProdB <= Cliente |x| (π <sub>idCliente</sub> (FacturasProductoB) )
 
-facturasConProdA - facturasConProdB
+π <sub>nombre, apellido, DNI, teléfono, dirección</sub> (CompraronProdA - CompraronProdB)
 
 # 9. Listar nroTicket, total, fecha, hora y DNI del cliente, de aquellas facturas donde se haya comprado el producto ‘Producto C’.
 
-facturasConProdC <= (Factura)) |x| ( π nroTicket ((Detalle) |x| (π idProducto [σ nombreP = 'Producto C'(Producto)]) ) )
+FacturasProductoC <= Factura |x| ( [ π <sub>nroTicket, idProducto</sub> (Detalle) ] |x| [ π <sub>idProducto</sub> ([ σ <sub>nombreP = 'Producto C'</sub> (Producto) ]) ])
 
-π P.nroTicket, P.total, P.fecha, P.hora, C.dni (σ C.idCliente = P.idCliente (ρ C [π idCliente,dni (Cliente)] x ρ F (facturasConProdC) ) )
+π <sub>nroTicket, total, fecha, hora, DNI</sub> ([ π <sub>idCliente, DNI</sub> (Cliente) ] |x| FacturasProductoC)
+
 
 # 10. Agregar un producto con id de producto 1000, descripción “mi producto”, precio $10000, nombreP “producto Z” y stock 1000. Se supone que el idProducto 1000 no existe.
 
