@@ -4,3 +4,4 @@
 * Proyección: π
 * Renombre: ρ
 * Intersección: ∩
+* Modificación: δ

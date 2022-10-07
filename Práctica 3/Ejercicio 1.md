@@ -8,15 +8,15 @@ Producto(<ins>idProducto</ins>, descripcion, precio, nombreP, stock)
 
 # 1. Listar nombre, apellido, DNI, teléfono y dirección de clientes con DNI superior a 22222222.
 
-π nombre,apellido,dni,teléfono,dirección (σ dni > 22222222 (Cliente) )
+π <sub>nombre,apellido,dni,teléfono,dirección</sub> (σ <sub>dni > 22222222</sub> (Cliente) )
 
 # 2. Listar nombre, apellido, DNI, teléfono y dirección de clientes con DNI superior a 22222222 y que tengan facturas cuyo total no supere los $100000.
 
-π nombre,apellido,dni,teléfono,dirección ( (π idCliente (σ total <= 100000 (Factura)) |x| (σ dni > 22222222 (Cliente) )
+π <sub>nombre,apellido,dni,teléfono,dirección</sub> ([ π <sub>idCliente</sub> (σ <sub>total <= 100000</sub> (Factura)) ] |x| [ σ (<sub>dni > 22222222</sub> (Cliente)) ])
 
 # 3. Listar nombre, apellido, DNI, teléfono y dirección de clientes que realizaron compras durante 2020.
 
-π nombre,apellido,dni,teléfono,dirección (π idCliente (σ fecha >= '2020/01/01' and fecha =< '2020/12/31' (Factura)) |x| Cliente)
+π <sub>nombre,apellido,dni,teléfono,dirección</sub> [ π <sub>idCliente</sub> (σ <sub>fecha >= '2020/01/01' and fecha =< '2020/12/31'</sub> (Factura)) |x| Cliente ]
 
 # 4. Listar nombre, apellido, DNI, teléfono y dirección de clientes que no realizaron compras durante 2020.
 
@@ -24,7 +24,7 @@ Clientes2020 <= Cliente |x| π <sub>idCliente</sub> (σ <sub>fecha >= '2020/01/0
 
 π <sub>nombre,apellido,DNI,teléfono,dirección</sub> ([Cliente |x| π <sub>idCliente</sub>(Factura)] - Clientes2020)
 
-*// Tengo que hacer lo de "Cliente |x| π <sub>idCliente</sub>(Factura)" antes la diferencia porque podría tener clientes que no compraron nunca*
+*// Tengo que hacer lo de "Cliente |x| π <sub>idCliente</sub>(Factura)" antes de la diferencia porque podría tener clientes que no compraron nunca*
 
 # 5. Listar nombre, apellido, DNI, teléfono y dirección de clientes que solo tengan compras durante 2020.
 
