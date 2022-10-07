@@ -52,7 +52,7 @@ IntegrantesGardel <= (Integrante |x| [ π <sub> codigoB</sub>(Recital |x| π<sub
 
 # 7. Modificar el año de creación de la banda de nombre ‘Ratones Paranoicos’ a: 1983.
 
-*// PREGUNTAR SI ESTÁ BIEN ESCRITA LA MODIFICACIÓN*
+*// No sé si está bien escrita la modificación (CONSULTAR)*
 
 δ <sub>año_creacion</sub> <= año_creacion = 1983 (σ <sub>nombreBanda = ‘Ratones Paranoicos’</sub> (Banda))
 
