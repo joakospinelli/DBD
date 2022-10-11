@@ -1,5 +1,5 @@
 Proyecto(codProyecto, nombrP,descripcion, fechaInicioP, fechaFinP,
-fechaFinEstimada,DNIResponsable(fk), equipoBackend(fk), equipoFrontend(fk)) *// DNIResponsablecorresponde a un empleado, equipoBackend y equipoFrontend corresponden a un equipo*
+fechaFinEstimada,DNIResponsable(fk), equipoBackend(fk), equipoFrontend(fk)) *// DNIResponsable corresponde a un empleado, equipoBackend y equipoFrontend corresponden a un equipo*
 
 Equipo(codEquipo, nombreE, descripcionTecnologias,DNILider(fk)) *// DNILider corresponde a un empleado*
 
@@ -15,14 +15,19 @@ Empleado_Equipo(codEquipo,DNI, fechaInicio, fechaFin,descripcionRol)
 
 # 2. Listar DNI, nombre, apellido, teléfono, dirección y fecha de ingreso de empleados que no hayan sido responsables de proyectos.
 
-( π <sub>DNILider</sub> (Equipo))
+EmpleadosLideres <= σ <sub>Empleado.DNI=DNILider</sub> [ Empleado x ( π <sub>DNILider</sub> (Equipo)) ]
+
+π <sub>DNI, nombre, apellido, teléfono, direccion, fechaIngreso</sub> (Empleado - EmpleadosLideres)
 
 # 3. Listar DNI, nombre, apellido, teléfono y dirección de todos los empleados que trabajan en el proyecto con nombre ‘Proyecto X’. No es necesario informar responsable y líderes.
 
+EquipoFrontend <= σ <sub>Empleado_Equipo.codEquipo=equipoFrontend</sub> ( Empleado_Equipo x [ π <sub>equipoFrontend</sub> ( σ <sub>nombrP='Proyecto X'</sub> (Proyecto)) ])
 
+EquipoBackend< = σ <sub>Empleado_Equipo.codEquipo=equipoBackend</sub> ( Empleado_Equipo x [ π <sub>equipoBackend</sub> ( σ <sub>nombrP='Proyecto X'</sub> (Proyecto)) ])
+
+π <sub>DNI, nombre, apellido, teléfono, dirección</sub> ( Empleado |x| [ ( π <sub>DNI</sub> (EquipoFrontend)) U ( π <sub>DNI</sub> (EquipoBackend)) ])
 
 # 4. Listar nombre de equipo y datos personales de líderes de equipos que no tengan empleados asignados y trabajen con tecnología ‘Java’.
-
 
 
 # 5. Modificar nombre, apellido y dirección del empleado con DNI: 40568965 con los datos que desee.
