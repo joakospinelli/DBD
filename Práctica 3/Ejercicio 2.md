@@ -36,13 +36,11 @@ Escenarios2020 <= Escenario |x| (π <sub>nroEscenario</sub> [ σ <sub>fecha >= '
 
 # 5. Listar DNI, nombre, apellido,dirección y email de integrantes nacidos entre 2000 y 2005 y que toquen en bandas con género pop que hayan tenido recitales durante 2020.
 
-
 *// Acá creo que no hace falta que busque por Banda  porque Integrante y Recital también comparten 'codigoB' (CONSULTAR)*
 
 π <sub> DNI, nombre, apellido, dirección, email </sub>([ σ fecha_nacimiento >= '2020/01/01' and fecha_nacimiento <= '2020/12/31'(Integrante)] |x| π <sub>codigoB</sub> [ σ <sub>fecha >= '2020/01/01' and fecha <= '2020/12/31'</sub> (Recital) ])
 
 # 6. Listar DNI, nombre, apellido,email de integrantes que hayan tocado en el escenario con nombre ‘Gustavo Cerati’ y no hayan tocado en el escenario con nombre ‘Carlos Gardel’.
-
 
 IntegrantesCerati <= (Integrante |x| [ π <sub> codigoB </sub>(Recital |x| π<sub> nroEscenario </sub>[σ <sub>nombre_escenario = 'Gustavo Cerati'</sub> (Escenario) ]) ])
 
@@ -55,6 +53,8 @@ IntegrantesGardel <= (Integrante |x| [ π <sub> codigoB</sub>(Recital |x| π<sub
 *// No sé si está bien escrita la modificación (CONSULTAR)*
 
 δ <sub>año_creacion</sub> <= año_creacion = 1983 (σ <sub>nombreBanda = ‘Ratones Paranoicos’</sub> (Banda))
+
+*// Probar hacerlo con unión y diferencia*
 
 # 8. Reportar nombre, género musical y año de creación de bandas que hayan realizado recitales durante 2019, y además hayan tocado durante 2020.
 

@@ -56,11 +56,10 @@ ClientesDestLincoln - ClientesOrgLaPlata
 
 Ciudades2020 <= σ <sub>Viaje.cpDestino = Ciudad.CODIGOPOSTAL</sub> (Ciudad x [ π <sub>cpDestino</sub> ( σ <sub>fecha>='2020/01/01' and fecha<='2020/12/31'</sub> (Viaje)) ])
 
+*// Falta proyección*
 Ciudad - Ciudades2020
 
 # 9. Reportar información de agencias que realizaron viajes durante 2019 o que tengan dirección igual a ‘General Pinto’.
-
-*// Capaz hay alguna solución que no requiere hacer la diferencia y después la unión (CONSULTAR)*
 
 Agencias2019 <=  Agencia |x| ( π <sub>razon_social</sub> [ σ <sub>fecha>='2019/01/01' and fecha<='2019/12/31'</sub> (Viaje)) ])
 

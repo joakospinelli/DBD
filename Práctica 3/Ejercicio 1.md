@@ -39,8 +39,6 @@ productosVendidos <= Producto |x| [π <sub>idProducto</sub> (Detalle) ]
 
 # 7. Listar nombre, apellido, DNI, teléfono y dirección de clientes que no compraron el producto con nombre ‘ProductoX’ durante 2020.
 
-*// En estos creo que podría usar el %*
-
 VentasProductoX <= Detalle |X| [𝝅 <sub>idProducto</sub> (𝛔 <sub>nombreP = ‘ProductoX’</sub> (Producto)]
 
 FacturasProdX2020 <= [𝛔 <sub>fecha >= '2020/01/01' and fecha <= '2020/12/31'</sub> (Factura) ] |x| [𝝅 <sub>nroTicket</sub> (VentasProductoX) ]

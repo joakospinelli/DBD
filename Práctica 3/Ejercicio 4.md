@@ -1,7 +1,11 @@
 Equipo(codigoE, nombreE, descripcionE)
+
 Integrante (DNI, nombre, apellido,ciudad,email, telefono,codigoE(fk))
+
 Laguna(nroLaguna, nombreL, ubicación,extension, descripción)
+
 TorneoPesca(codTorneo, fecha,hora,nroLaguna(fk), descripcion)
+
 Inscripcion(codTorneo,codigoE,asistio, gano) *// asistio y gano son true o false según corresponda*
 
 # 1. Listar DNI, nombre, apellido y email de integrantes que sean de la ciudad ‘La Plata’ y estén inscriptos en torneos que se disputaron durante 2019.
@@ -29,8 +33,6 @@ TorneosLX2019 <= σ <sub>fecha>='2019/01/01' and fecha<='2019/12/31'</sub> (Torn
 π <sub>nombre, descripcion</sub> [ Equipo |x| (π <sub>codigoE</sub> [ ( σ <sub>gano = true</sub> (Inscripcion)) |x| ( π <sub>codTorneo</sub> (TorneosLX2019)) ]) ]
 
 # 5. Reportar nombre, y descripción de equipos que tengan inscripciones en todas las lagunas.
-
-*// CONSULTAR*
 
 TorneosLagunas <= ( π <sub>nroLaguna</sub> (Laguna)) |x| ( π <sub>codTorneo, nroLaguna</sub> (TorneoPesca))
 
