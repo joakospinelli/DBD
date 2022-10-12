@@ -29,23 +29,43 @@ EquipoBackend< = σ <sub>Empleado_Equipo.codEquipo=equipoBackend</sub> ( Emplead
 
 # 4. Listar nombre de equipo y datos personales de líderes de equipos que no tengan empleados asignados y trabajen con tecnología ‘Java’.
 
+EquiposJava <= σ <sub>descripcionTecnologias='Java'</sub> (Equipo)
+
+EquiposConEmpleados <= Equipo |x| [( π <sub>codEquipo</sub> [ Empleado_Equipo |x| ( π <sub>dni</sub> (Empleado)) ] )
+
+*// No sé si sigo teniendo los campos que necesito después del prod. cartesiano (CONSULTAR)*
+
+π <sub>EquiposVacios.nombreE, Empleado.DNI, Empleado.nombre, Empleado.apellido, Empleado.direccion</sub> [ σ <sub>Empleado.DNI=EquiposVacios.DNILider</sub> (Empleado x ρ <sub>EquiposVacios</sub> [ EquiposJava U (Equipo - EquiposConEmpleados) ]) ]
 
 # 5. Modificar nombre, apellido y dirección del empleado con DNI: 40568965 con los datos que desee.
+
+*// No sé si está bien la modificación de varios campos (CONSULTAR)*
 
 δ <sub>nombre,apellido,dirección</sub> <= nombre='AAA',apellido='BBB',direccion='1 1234' (σ <sub>dni=40568965</sub> (Empleado))
 
 # 6. Listar DNI, nombre, apellido, teléfono y dirección de empleados que son responsables de proyectos pero no han sido líderes de equipo.
 
+Responsables <= π <sub>DNI,nombre,apellido, telefono,direccion, echaIngreso</sub> (σ <sub>Proyecto.DNIResponsable = Empleado.DNI</sub> [ Empleado x (π <sub>DNIResponsable</sub> (Proyecto)) ])
+
+Líderes <= π <sub>DNI,nombre,apellido,telefono,direccion,fechaIngreso</sub> (σ <sub>Equipo.DNILider = Empleado.DNI</sub> [ Empleado x (π <sub>DNILider</sub> (Equipo)) ])
+
+π <sub>DNI,nombre,apellido,telefono,direccion</sub> (Responsables - Líderes)
 
 
 # 7. Listar nombre de equipo y descripción de tecnologías de equipos que hayan sido asignados como equipos frontend y backend.
 
+EquiposFrontend <= π <sub>codEquipo,nombre,descripcionTecnologías</sub> ( σ <sub>Equipo.codEquipo = Proyecto.equipoFrontend</sub> [ Equipo x ( π <sub>equipoFrontend</sub> (Proyecto)) ])
 
+EquiposBackend <= π <sub>codEquipo,nombre,descripcionTecnologías</sub> ( σ <sub>Equipo.codEquipo = Proyecto.equipoBackend</sub> [ Equipo x ( π <sub>equipoBackend</sub> (Proyecto)) ])
+
+π <sub>nombre,descripcionTecnologías</sub> (EquiposFrontend U EquiposBackend)
 
 # 8. Listar nombre, descripción, fecha de inicio, nombre y apellido de responsables de proyectos a finalizar durante 2019.
 
-
+π <sub>EP.nombreP,EP.descripción,EP.fechaInicioP,EP.nombre,EP.apellido</sub> ( ρ EP [ σ <sub>Empleado.DNI = Proyecto.DNIResponsable</sub> ( Empleado x [ π <sub>DNIResponsable</sub> ( σ <sub>(fechaFinP>='2019/01/01') and (fechaFinP<='2019/12/31')</sub> (Proyecto)) ]) ])
 
 # 9. Listar nombre de equipo, descripción de tecnología y la información personal del líder, de equipos que no estén asignados a ningún proyecto aun.
 
+EquiposAsignados <= π <sub>codEquipo, nombreE, descripcionTecnologias, DNILider</sub> ( σ <sub>(codEquipo=equipoFrontend) or (codEquipo=equipoBackend)</sub> [ Equipo x ( π <sub>equipoFrontend,equipoBackend</sub> (Proyecto)) ])
 
+π <sub>nombreE, descripcionTecnologías, nombre, apellido, telefono, dirección</sub> ( σ <sub>DNI=DNILider</sub> [ Empleado x (Equipo - EquiposAsignados) ])

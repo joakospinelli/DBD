@@ -52,12 +52,11 @@ ClientesDestLincoln - ClientesOrgLaPlata
 
 # 8. Listar código postal, nombre Ciudad y año creación de ciudades que no recibieron viajes durante 2020.
 
-*// No sé qué tan bien está el prod. cartesiano (CONSULTAR)*
+*// Acá tengo que hacer la proyección dentro de Ciudades2020 para que los esquemas queden compatibles y hacer la diferencia*
 
-Ciudades2020 <= σ <sub>Viaje.cpDestino = Ciudad.CODIGOPOSTAL</sub> (Ciudad x [ π <sub>cpDestino</sub> ( σ <sub>fecha>='2020/01/01' and fecha<='2020/12/31'</sub> (Viaje)) ])
+Ciudades2020 <= π <sub>Ciudad.codigoPostal, Ciudad.nombreCiudad, Ciudad.añoCreación</sub> [ σ <sub>Viaje.cpDestino = Ciudad.CODIGOPOSTAL</sub> (Ciudad x [ π <sub>cpDestino</sub> ( σ <sub>fecha>='2020/01/01' and fecha<='2020/12/31'</sub> (Viaje)) ]) ]
 
-*// Falta proyección*
-Ciudad - Ciudades2020
+π <sub>codigoPostal, nombreCiudad, añoCreación</sub> (Ciudad - Ciudades2020)
 
 # 9. Reportar información de agencias que realizaron viajes durante 2019 o que tengan dirección igual a ‘General Pinto’.
 

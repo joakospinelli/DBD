@@ -42,8 +42,6 @@ InscripcionesE <= Equipo |x| π <sub>codigoE, codTorneo</sub> (Inscripción)
 
 # 6. Eliminar el equipo con código: 10000.
 
-*// Con eliminar al equipo me sirve o tengo que eliminar todas las referencias? (CONSULTAR)*
-
 Integrante <= Integrante - (σ <sub>codigoE = 10000</sub> (Integrante))
 
 Inscripción <= Inscripción - (σ <sub>codigoE = 10000</sub> (Inscripción))
@@ -69,8 +67,6 @@ Equipos2020 <= Equipo |x| π <sub>codigoE</sub>  (Inscripciones2020)
 π <sub>nombre, descripción</sub> (Equipos2019 - Equipos2020)
 
 # 9. Listar DNI, nombre, apellido, ciudad y email de integrantes que asistieron o ganaron algún torneo que se disputó en la laguna con nombre: ‘Laguna Brava’.
-
-*// No sé si tiene sentido que algún equipo haya ganado sin asistir pero por las dudas hice las 2 consultas*
 
 TorneosLagunaBrava <= TorneoPesca |x| [ π <sub>nroLaguna</sub> ( σ <sub>nombre='Laguna Brava'</sub> (Laguna))]
 
