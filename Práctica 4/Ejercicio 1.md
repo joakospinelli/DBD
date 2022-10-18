@@ -17,6 +17,8 @@ ORDER BY dni
 
 # 2. Listar nombre, apellido, DNI, teléfono y dirección de clientes que realizaron compras solamente durante 2017.
 
+*// Capaz hay alguna manera más corta que hacerlo con un IN AND NOT IN (CONSULTAR)*
+
 ```sql
 SELECT nombre,apellido,dni,teléfono,dirección
 FROM Cliente
@@ -29,6 +31,18 @@ WHERE idCliente IN (
 AND idCliente NOT IN (
 
     SELECT idCliente FROM Factura
+    WHERE fecha NOT BETWEEN '2017-01-01' AND '2017-12-31'
+)
+```
+*// Otra solución usando un EXCEPT*
+
+```sql
+SELECT cli.nombre,cli.apellido,cli.dni,cli.teléfono,cli.dirección
+FROM Cliente cli
+WHERE fecha BETWEEN '2017-01-01' AND '2017-12-31'
+EXCEPT (
+    SELECT cli.nombre,cli.apellido,cli.dni,cli.teléfono,cli.dirección
+    FROM Cliente cli
     WHERE fecha NOT BETWEEN '2017-01-01' AND '2017-12-31'
 )
 ```
@@ -83,15 +97,15 @@ GROUP BY idProducto,nombreP,descripción,precio
 
 # 6. Listar nombre, apellido, DNI, teléfono y dirección de clientes que compraron los productos con nombre ‘prod1’ y ‘prod2’ pero nunca compraron el producto con nombre ‘prod3’.
 
-*// Acá usé un EXISTS en vez de un WHERE OR p.nombreP='prod2' porque podría tener un Cliente que nunca haya comprado prod2 (CONSULTAR)*
+*// Acá usé un IN en vez de un WHERE OR p.nombreP='prod2' porque podría tener un Cliente que nunca haya comprado prod2 (CONSULTAR)*
 
 ```sql
 SELECT c.nombre,c.apellido,c.dni,c.teléfono,c.dirección
 FROM Cliente c
 INNER JOIN Detalle d ON (d.idCliente=c.idCliente)
 INNER JOIN Producto p ON (p.idProducto=d.idProducto)
-WHERE (p.nombreP='prod1') AND EXISTS (
-    SELECT nombre,apellido,dni,teléfono,dirección
+WHERE (p.nombreP='prod1') AND c.idCliente IN (
+    SELECT c.idCliente
     FROM Cliente c
     INNER JOIN Factura f ON (f.idCliente=c.idCliente)
     INNER JOIN Detalle d ON (d.nroTicket=f.nroTicket)

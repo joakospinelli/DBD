@@ -40,7 +40,30 @@ WHERE (v.fecha BETWEEN '2019-01-01' AND '2019-12-31') OR (a.email LIKE '%@jmail.
 
 # 4. Listar datos personales de clientes que viajaron solo con destino a la ciudad de ‘Coronel Brandsen’
 
+```sql
+SELECT cli.nombre,cli.apellido,cli.dni,cli.dirección,cli.teléfono
+FROM Cliente cli
+INNER JOIN Viaje v ON (v.dni = cli.dni)
+INNER JOIN Ciudad c ON (c.codigo_postal = v.cpDestino)
+WHERE c.nombreCiudad = 'Coronel Brandsen'
+EXCEPT (
+    SELECT cli.nombre,cli.apellido,cli.dni,cli.dirección,cli.teléfono
+    FROM Cliente cli
+    INNER JOIN Viaje v ON (v.dni = cli.dni)
+    INNER JOIN Ciudad c ON (c.codigo_postal = v.cpDestino)
+    WHERE NOT (c.nombreCiudad = 'Coronel Brandsen')
+) 
+```
+
 # 5. Informar cantidad de viajes de la agencia con razón social ‘TAXI Y’ realizados a ‘Villa Elisa’.
+
+```sql
+SELECT COUNT(*)
+FROM Agencia a
+INNER JOIN Viaje v WHERE (v.razon_social=a.razon_social)
+INNER JOIN Ciudad c WHERE (c.codigopostal=v.cpDestino)
+WHERE (c.nombreCiudad='Villa Elisa') AND (a.razon_social='TAXI Y')
+```
 
 # 6. Listar nombre, apellido, dirección y teléfono de clientes que viajaron con todas las agencias.
 
