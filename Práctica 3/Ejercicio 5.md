@@ -38,7 +38,7 @@ JugadoresJunin <= Jugador |x| π <sub>dni</sub> (ClubJugador |x| [ π<sub>codigo
 
 π <sub>dni, nombre, apellido</sub> (JugadoresMenor25 U JugadoresJunin)
 
-*// Creo que lo puedo hacer más fácil así (CONSULTAR)*
+*// Otra opción*
 
 π<sub>dni, nombre, apellido</sub> [ σ <sub>edad <= 25</sub> (Jugador) |x| π <sub>dni</sub> (ClubJugador |x| [ π<sub>codigoCiudad</sub> (σ <sub>nombre = 'Junin'</sub> (Ciudad)) ]) ]
 

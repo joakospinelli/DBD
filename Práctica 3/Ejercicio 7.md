@@ -44,7 +44,6 @@ SP2019 <= ( σ <sub>fecha >= '2019/01/01' and fecha <= '2019/12/31'</sub> (Servi
 
 π <sub>patente, modelo, marca, peso</sub> (Vehiculo |x| [ π <sub>patente</sub> ( σ <sub>es_electrico = True</sub> (Auto)) ])
 
-
 # 6. Dar de alta una parte, cuyo nombre sea “Aleron” y precio $3400.
 
 Parte <= Parte U ({*1, "Alerón", 3400*})

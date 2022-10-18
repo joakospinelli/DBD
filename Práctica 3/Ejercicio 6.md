@@ -11,7 +11,7 @@ Empleado_Equipo(codEquipo,DNI, fechaInicio, fechaFin,descripcionRol)
 
 *// No sé cómo ver si el proyecto está terminado (CONSULTAR)*
 
-σ <sub>(fechaFinP<=Date.now) and (fechaFinP != fechaFinEstimada)</sub> (Proyecto)
+σ <sub>(fechaFinP < fechaFinEstimada)</sub> (Proyecto)
 
 # 2. Listar DNI, nombre, apellido, teléfono, dirección y fecha de ingreso de empleados que no hayan sido responsables de proyectos.
 
@@ -33,8 +33,6 @@ EquiposJava <= σ <sub>descripcionTecnologias='Java'</sub> (Equipo)
 
 EquiposConEmpleados <= Equipo |x| [( π <sub>codEquipo</sub> [ Empleado_Equipo |x| ( π <sub>dni</sub> (Empleado)) ] )
 
-*// No sé si sigo teniendo los campos que necesito después del prod. cartesiano (CONSULTAR)*
-
 π <sub>EquiposVacios.nombreE, Empleado.DNI, Empleado.nombre, Empleado.apellido, Empleado.direccion</sub> [ σ <sub>Empleado.DNI=EquiposVacios.DNILider</sub> (Empleado x ρ <sub>EquiposVacios</sub> [ EquiposJava U (Equipo - EquiposConEmpleados) ]) ]
 
 # 5. Modificar nombre, apellido y dirección del empleado con DNI: 40568965 con los datos que desee.
@@ -50,7 +48,6 @@ Responsables <= π <sub>DNI,nombre,apellido, telefono,direccion, echaIngreso</su
 Líderes <= π <sub>DNI,nombre,apellido,telefono,direccion,fechaIngreso</sub> (σ <sub>Equipo.DNILider = Empleado.DNI</sub> [ Empleado x (π <sub>DNILider</sub> (Equipo)) ])
 
 π <sub>DNI,nombre,apellido,telefono,direccion</sub> (Responsables - Líderes)
-
 
 # 7. Listar nombre de equipo y descripción de tecnologías de equipos que hayan sido asignados como equipos frontend y backend.
 
