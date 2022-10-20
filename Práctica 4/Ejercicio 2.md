@@ -1,10 +1,10 @@
-AGENCIA (<u>RAZON_SOCIAL</u>, dirección, telef, e-mail)
+AGENCIA (<ins>RAZON_SOCIAL</ins>, dirección, telef, e-mail)
 
-CIUDAD (<u>CODIGOPOSTAL</u>, nombreCiudad, añoCreación)
+CIUDAD (<ins>CODIGOPOSTAL</ins>, nombreCiudad, añoCreación)
 
-CLIENTE (<u>DNI</u>, nombre, apellido, teléfono, dirección)
+CLIENTE (<ins>DNI</ins>, nombre, apellido, teléfono, dirección)
 
-VIAJE(<u>FECHA,HORA, DNI</u>, cpOrigen(fk), cpDestino(fk), razon_social(fk), descripcion)
+VIAJE(<ins>FECHA,HORA, DNI</ins>, cpOrigen(fk), cpDestino(fk), razon_social(fk), descripcion)
 *//cpOrigen y cpDestino corresponden a la ciudades origen y destino del viaje*
 
 # 1. Listar razón social, dirección y teléfono de agencias que realizaron viajes desde la ciudad de ‘La Plata’ (ciudad origen) y que el cliente tenga apellido ‘Roma’. Ordenar por razón social y luego por teléfono.

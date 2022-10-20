@@ -1,12 +1,12 @@
-Club=(<u>codigoClub</u>, nombre, anioFundacion, codigoCiudad(FK))
+Club=(<ins>codigoClub</ins>, nombre, anioFundacion, codigoCiudad(FK))
 
-Ciudad=(<u>codigoCiudad</u>, nombre)
+Ciudad=(<ins>codigoCiudad</ins>, nombre)
 
-Estadio=(<u>codigoEstadio</u>, codigoClub(FK), nombre, direccion)
+Estadio=(<ins>codigoEstadio</ins>, codigoClub(FK), nombre, direccion)
 
-Jugador=(<u>DNI</u>, nombre, apellido, edad, codigoCiudad(FK))
+Jugador=(<ins>DNI</ins>, nombre, apellido, edad, codigoCiudad(FK))
 
-ClubJugador=(<u>codigoClub, DNI</u>, desde, hasta)
+ClubJugador=(<ins>codigoClub, DNI</ins>, desde, hasta)
 
 # 1. Reportar nombre y anioFundacion de aquellos clubes de la ciudad de La Plata que no poseen estadio.
 

@@ -1,18 +1,18 @@
-PERSONA = (<u>DNI</u>, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
+PERSONA = (<ins>DNI</ins>, Apellido, Nombre, Fecha_Nacimiento, Estado_Civil, Genero)
 
-ALUMNO = (<u>DNI</u>, Legajo, Año_Ingreso)
+ALUMNO = (<ins>DNI</ins>, Legajo, Año_Ingreso)
 
-PROFESOR = (<u>DNI</u>, Matricula, Nro_Expediente)
+PROFESOR = (<ins>DNI</ins>, Matricula, Nro_Expediente)
 
-TITULO = (<u>Cod_Titulo</u>, Nombre, Descripción)
+TITULO = (<ins>Cod_Titulo</ins>, Nombre, Descripción)
 
-TITULO-PROFESOR = (<u>Cod_Titulo, DNI</u>, Fecha)
+TITULO-PROFESOR = (<ins>Cod_Titulo, DNI</ins>, Fecha)
 
-CURSO = (<u>Cod_Curso</u>, Nombre, Descripción, Fecha_Creacion, Duracion)
+CURSO = (<ins>Cod_Curso</ins>, Nombre, Descripción, Fecha_Creacion, Duracion)
 
-ALUMNO-CURSO = (<u>DNI, Cod_Curso</u>, Año, Desempeño, Calificación)
+ALUMNO-CURSO = (<ins>DNI, Cod_Curso</ins>, Año, Desempeño, Calificación)
 
-PROFESOR-CURSO = (<u>DNI, Cod_Curso</u>, Fecha_Desde, Fecha_Hasta)
+PROFESOR-CURSO = (<ins>DNI, Cod_Curso</ins>, Fecha_Desde, Fecha_Hasta)
 
 # 1. Listar DNI, legajo y apellido y nombre de todos los alumnos que tegan año ingreso inferior a 2014.
 

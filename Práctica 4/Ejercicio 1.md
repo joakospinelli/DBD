@@ -1,10 +1,10 @@
-Cliente(<u>idCliente</u>, nombre, apellido, DNI, telefono, direccion)
+Cliente(<ins>idCliente</ins>, nombre, apellido, DNI, telefono, direccion)
 
-Factura (<u>nroTicket</u>, total, fecha, hora,idCliente (fk))
+Factura (<ins>nroTicket</ins>, total, fecha, hora,idCliente (fk))
 
-Detalle(<u>nroTicket, idProducto</u>, cantidad, preciounitario)
+Detalle(<ins>nroTicket, idProducto</ins>, cantidad, preciounitario)
 
-Producto(<u>idProducto</u>, descripcion, precio, nombreP, stock)
+Producto(<ins>idProducto</ins>, descripcion, precio, nombreP, stock)
 
 # 1. Listar datos personales de clientes cuyo apellido comience con el string ‘Pe’. Ordenar por DNI
 
