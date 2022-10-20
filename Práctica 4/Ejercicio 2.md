@@ -67,10 +67,56 @@ WHERE (c.nombreCiudad='Villa Elisa') AND (a.razon_social='TAXI Y')
 
 # 6. Listar nombre, apellido, dirección y teléfono de clientes que viajaron con todas las agencias.
 
+*// Este lo pensé como: buscar los viajes de las personas en las agencias - buscar las agencias en las que la persona NO viajó - buscar al cliente que no tenga agencias sin viajar (CONSULTAR)*
+
+```sql
+SELECT cli.dni
+FROM Cliente cli
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Agencia a
+    WHERE NOT EXISTS (
+        SELECT *
+        FROM Viaje v
+        WHERE (cli.dni = v.dni) AND (a.razon_social = v.razon_social)
+    )
+)
+```
+
 # 7. Modificar el cliente con DNI: 38495444 actualizando el teléfono a: 221-4400897.
+
+```sql
+UPDATE Cliente
+SET telefono = '221-4400897'
+WHERE dni = '38485444'
+```
 
 # 8. Listar razon_social, dirección y teléfono de la/s agencias que tengan mayor cantidad de viajes realizados.
 
+```sql
+SELECT a.razon_social, a.dirección, a.teléfono
+FROM Agencia a
+GROUP BY a.razon_social, a.dirección, a.teléfono
+HAVING COUNT(*) >= ALL (
+    SELECT COUNT(*)
+    FROM Viaje v
+    GROUP BY v.razon_social
+)
+```
+
 # 9. Reportar nombre, apellido, dirección y teléfono de clientes con al menos 10 viajes.
 
+```sql
+SELECT cli.nombre, cli.apellido, cli.dirección, cli.teléfono
+FROM Cliente cli
+INNER JOIN Viaje v ON (v.dni = cli.dni)
+GROUP BY cli.dni, cli.nombre, cli.apellido, cli.dirección, cli.teléfono
+HAVING COUNT(*) >= 10
+```
+
 # 10. Borrar al cliente con DNI 40325692.
+
+```sql
+DELETE FROM Cliente cli
+WHERE cli.dni = '40325692'
+```

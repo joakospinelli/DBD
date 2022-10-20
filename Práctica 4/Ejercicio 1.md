@@ -166,7 +166,6 @@ WHERE (c.nombre='Jorge' AND c.apellido='Pérez') AND NOT (p.nombreP='Z')
 
 # 10. Listar DNI, apellido y nombre de clientes donde el monto total comprado, teniendo en cuenta todas sus facturas, supere $10.000.000.
 
-*// No sé si puedo usarlo en el HAVING aunque no lo liste porque el enunciado no lo pide (CONSULTAR)*
 ```sql
 SELECT c.dni,c.apellido,c.nombre
 FROM Cliente c
