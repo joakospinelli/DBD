@@ -97,8 +97,6 @@ ORDER BY p.apellido, p.nombre
 
 # 6. Listar el DNI, Apellido, Nombre, Cantidad de horas y Promedio de horas que dicta cada profesor. La cantidad de horas se calcula como la suma de la duración de todos los cursos que dicta.
 
-*// Si puede haber profesores sin curso tengo que usar LEFT JOIN, no sé si después el join puede ser INNER o tiene que ser LEFT también (CONSULTAR)*
-
 ```sql
 SELECT prof.dni, p.apellido, p.nombre, SUM(c.duración) AS cantHoras, AVG (c.duración) AS promHoras
 FROM Profesor prof
