@@ -103,7 +103,7 @@ WHERE nroLaguna NOT IN (
 
 ```sql
 (
-    SELECT DISTINCT e.nombre, e.descripción
+    SELECT e.nombre, e.descripción
     FROM Equipo e
     INNER JOIN Inscripción ins ON (ins.códigoE = e.códigoE)
     INNER JOIN TorneoPesca tp ON (tp.nroTorneo = ins.nroTorneo)
@@ -111,13 +111,15 @@ WHERE nroLaguna NOT IN (
 )
 EXCEPT
 (
-    SELECT DISTINCT e.nombre, e.descripción
+    SELECT e.nombre, e.descripción
     FROM Equipo e
     INNER JOIN Inscripción ins ON (ins.códigoE = e.códigoE)
     INNER JOIN TorneoPesca tp ON (tp.nroTorneo = ins.nroTorneo)
     WHERE tp.fecha BETWEEN '2018-01-01' AND '2018-01-01'
 )
 ```
+
+*// No necesito DISTINCT adentro del EXCEPT porque cuando hace la diferencia elimina repetidos*
 
 # 9. Listar DNI, nombre, apellido, ciudad y email de integrantes que ganaron algún torneo que se disputó en la laguna con nombre: ‘Laguna de Chascomús’.
 

@@ -58,6 +58,14 @@ UNION
 )
 ```
 
+```sql
+SELECT emp.dni, emp.nombre, emp.apellido, emp.teléfono, emp.dirección
+FROM Empleado emp
+INNER JOIN Empleado_Equipo ee ON (ee.dni = emp.dni)
+INNER JOIN Proyecto p ON (p.equipoFrontend = ee.codEquipo) OR (p.equipoBackend = ee.codEquipo)
+WHERE p.nombreP = 'Proyecto X'
+```
+
 # 5. Listar nombre de equipo y datos personales de líderes de equipos que no tengan empleados asignados y trabajen con tecnología ‘Java’.
 
 ```sql

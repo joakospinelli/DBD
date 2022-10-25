@@ -62,7 +62,7 @@ EXCEPT
 
 # 5. Listar para cada repuesto nombre, stock y cantidad de técnicos distintos que lo utilizaron. Si un repuesto no participó en alguna reparación igual debe aparecer en dicho listado.
 
-*// No sé cómo buscar los Técnicos distintos, creo que con el DISTINCT no es suficiente si un mismo técnico lo usó varias veces en distintas reparaciones (CONSULTAR)*
+*// El join de R con RR tiene que ser LEFT por si el repuesto no participó en reparaciones, pero no sé si después el Join con rep también tiene que ser LEFT o si es INNER (CONSULTAR)*
 
 ```sql
 SELECT DISTINCT r.nombre, r.stock, COUNT(*) AS Técnicos

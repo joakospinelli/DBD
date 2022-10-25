@@ -84,7 +84,7 @@ WHERE p.dni NOT IN (
     SELECT Poda.dni
     FROM Poda
     INNER JOIN Arbol a ON (a.nroArbol = Poda.nroArbol)
-    WHERE (a.especie = 'Coníferas')
+    WHERE NOT (a.especie = 'Coníferas')
 )
 ```
 

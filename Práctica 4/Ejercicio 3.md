@@ -97,7 +97,7 @@ GROUP BY Club.nombre
 SELECT j.nombre, j.apellido, j.edad, COUNT(*)
 FROM Jugador j
 LEFT JOIN ClubJugador cj ON (cj.dni = j.dni)
-GROUP BY j.nombre, j.apellido, j.edad
+GROUP BY j.dni, j.nombre, j.apellido, j.edad
 ```
 
 # 7. Mostrar el nombre de los clubes que nunca hayan tenido jugadores de la ciudad de Mar del Plata.

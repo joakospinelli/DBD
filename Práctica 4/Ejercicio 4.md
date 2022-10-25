@@ -50,8 +50,6 @@ WHERE (ac.año = 2019) AND (c.nombre = 'Diseño de Bases de Datos')
 
 *// Uso DISTINCT porque un alumno se podría haber sacado 9 en más de una materia de Juan García*
 
-*// Acá me trabé con tantos joins. No sé si está bien hacer 2 INNER JOIN con Persona; uno para los alumnos y otro para el profesor (CONSULTAR)*
-
 ```sql
 SELECT DISTINCT a.dni, p.apellido, p.nombre, ac.calificación
 FROM Alumno a
@@ -75,7 +73,7 @@ SELECT prof.dni, p.apellido, p.nombre, prof.matrícula
 FROM Profesor prof
 INNER JOIN Persona p ON (p.dni = prof.dni)
 LEFT JOIN Título-Profesor tp ON (tp.dni = prof.dni)
-GROUP BY prof.dni
+GROUP BY prof.dni, p.apellido, p.nombre, prof.matrícula
 HAVING COUNT(*) > 3
 ORDER BY p.apellido, p.nombre
 ```

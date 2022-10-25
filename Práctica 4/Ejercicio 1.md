@@ -130,17 +130,6 @@ VALUES (
 
 # 9. Listar nroTicket, total, fecha, hora para las facturas del cliente ´Jorge Pérez´ donde no haya comprado el producto ´Z´.
 
-*// Está bien usar un AND NOT en el WHERE o necesito un EXCEPT ??? (CONSULTAR)*
-
-```sql
-SELECT f.nroTicket, f.total, f.fecha, f.hora
-FROM Factura f
-INNER JOIN Detalle d ON (d.nroTicket=f.nroTicket)
-INNER JOIN Producto p ON (p.idProducto=f.idProducto)
-INNER JOIN Cliente c ON (c.idCliente=f.idCliente)
-WHERE (c.nombre = 'Jorge' AND c.apellido = 'Pérez') AND NOT (p.nombreP = 'Z')
-```
-
 ```sql
 (
     SELECT f.nroTicket, f.total, f.fecha, f.hora
@@ -160,6 +149,9 @@ EXCEPT
     WHERE p.nombreP='Z'
 )
 ```
+
+*// Estaba mal poner el AND NOT (p.nombreP = 'Z') porque eso consulta por los detalles, pero las facturas tienen más de un detalle*
+
 
 # 10. Listar DNI, apellido y nombre de clientes donde el monto total comprado, teniendo en cuenta todas sus facturas, supere $10.000.000.
 
