@@ -165,8 +165,6 @@ WHERE (ac.nombre LIKE '%BD%' and ac.año = 2018) AND NOT EXISTS (
 
 # 9. Agregar un profesor con los datos que prefiera y agregarle el título con código: 25.
 
-*// En este supongo que tengo que agregar en cadena Persona -> Profesor -> Título -> Título-Profesor (CONSULTAR)*
-
 ```sql
 INSERT INTO Persona(
     dni,
@@ -233,8 +231,6 @@ WHERE a.legajo = '2020/09'
 ```
 
 # 11. Dar de baja el alumno con DNI 30568989. Realizar todas las bajas necesarias para no dejar el conjunto de relaciones en estado inconsistente.
-
-*// Es necesario darlo de baja en Persona también? En ese caso me tengo que asegurar también de que no esté como Profesor (CONSULTAR)*
 
 ```sql
 DELETE FROM Alumno-Curso
