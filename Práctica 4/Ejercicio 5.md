@@ -51,8 +51,6 @@ WHERE a.nroArbol NOT IN (
 
 # 4. Reportar especie, años,calle, nro y localidad de árboles que fueron podados durante 2017 y no fueron podados durante 2018.
 
-*// No sé si está bien con el EXCEPT o si necesito un NOT EXISTS (CONSULTAR)*
-
 ```sql
 (
     SELECT a.especie, a.años, a.calle, a.nro, l.nombreL
@@ -77,16 +75,16 @@ EXCEPT
 
 # 6. Listar DNI, apellido, nombre, teléfono y fecha de nacimiento de podadores que solo podaron árboles de especie ‘Coníferas’.
 
-*// 2 soluciones posibles (CONSULTAR)*
+*// 2 soluciones posibles*
 
 ```sql
 SELECT p.dni, p.apellido, p.nombre, p.teléfono, p.fnac
 FROM Podador p
-WHERE NOT EXISTS (
-    SELECT *
+WHERE p.dni NOT IN (
+    SELECT Poda.dni
     FROM Poda
     INNER JOIN Arbol a ON (a.nroArbol = Poda.nroArbol)
-    WHERE (Poda.dni = p.dni) AND NOT (Arbol.especie = 'Coníferas')
+    WHERE (a.especie = 'Coníferas')
 )
 ```
 

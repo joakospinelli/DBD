@@ -17,25 +17,6 @@ ORDER BY dni
 
 # 2. Listar nombre, apellido, DNI, teléfono y dirección de clientes que realizaron compras solamente durante 2017.
 
-*// Capaz hay alguna manera más corta que hacerlo con un IN AND NOT IN (CONSULTAR)*
-
-```sql
-SELECT nombre,apellido,dni,teléfono,dirección
-FROM Cliente
-WHERE idCliente IN (
-
-    SELECT idCliente FROM Factura
-    WHERE fecha BETWEEN '2017-01-01' AND '2017-12-31'
-)
-
-AND idCliente NOT IN (
-
-    SELECT idCliente FROM Factura
-    WHERE fecha NOT BETWEEN '2017-01-01' AND '2017-12-31'
-)
-```
-*// Otra solución usando un EXCEPT*
-
 ```sql
 SELECT cli.nombre,cli.apellido,cli.dni,cli.teléfono,cli.dirección
 FROM Cliente cli
@@ -48,8 +29,6 @@ EXCEPT (
 ```
 
 # 3. Listar nombre, descripción, precio y stock de productos vendidos al cliente con DNI:45789456, pero que no fueron vendidos a clientes de apellido ‘Garcia’.
-
-*// Está bien el EXCEPT o se puede usar un AND NOT EXIST ??? (CONSULTAR)*
 
 ```sql
 SELECT p.nombreP,p.descripción,p.precio,p.stock
@@ -96,8 +75,6 @@ GROUP BY idProducto,nombreP,descripción,precio
 ```
 
 # 6. Listar nombre, apellido, DNI, teléfono y dirección de clientes que compraron los productos con nombre ‘prod1’ y ‘prod2’ pero nunca compraron el producto con nombre ‘prod3’.
-
-*// Acá usé un IN en vez de un WHERE OR p.nombreP='prod2' porque podría tener un Cliente que nunca haya comprado prod2 (CONSULTAR)*
 
 ```sql
 SELECT c.nombre,c.apellido,c.dni,c.teléfono,c.dirección
@@ -147,13 +124,13 @@ VALUES (
     'Castor',
     '40578999',
     '221-4400789',
-    '11 entre 500 y 501',
+    '11 entre 500 y 501 nro: 2587',
     500002)
 ```
 
 # 9. Listar nroTicket, total, fecha, hora para las facturas del cliente ´Jorge Pérez´ donde no haya comprado el producto ´Z´.
 
-*// Está bien user un AND NOT en el WHERE o necesito un EXCEPT ??? (CONSULTAR)*
+*// Está bien usar un AND NOT en el WHERE o necesito un EXCEPT ??? (CONSULTAR)*
 
 ```sql
 SELECT f.nroTicket, f.total, f.fecha, f.hora
@@ -161,7 +138,27 @@ FROM Factura f
 INNER JOIN Detalle d ON (d.nroTicket=f.nroTicket)
 INNER JOIN Producto p ON (p.idProducto=f.idProducto)
 INNER JOIN Cliente c ON (c.idCliente=f.idCliente)
-WHERE (c.nombre='Jorge' AND c.apellido='Pérez') AND NOT (p.nombreP='Z')
+WHERE (c.nombre = 'Jorge' AND c.apellido = 'Pérez') AND NOT (p.nombreP = 'Z')
+```
+
+```sql
+(
+    SELECT f.nroTicket, f.total, f.fecha, f.hora
+    FROM Factura f
+    INNER JOIN Detalle d ON (d.nroTicket=f.nroTicket)
+    INNER JOIN Producto p ON (p.idProducto=f.idProducto)
+    INNER JOIN Cliente c ON (c.idCliente=f.idCliente)
+    WHERE (c.nombre='Jorge' AND c.apellido='Pérez')
+)
+EXCEPT
+(
+    SELECT f.nroTicket, f.total, f.fecha, f.hora
+    FROM Factura f
+    INNER JOIN Detalle d ON (d.nroTicket=f.nroTicket)
+    INNER JOIN Producto p ON (p.idProducto=f.idProducto)
+    INNER JOIN Cliente c ON (c.idCliente=f.idCliente)
+    WHERE p.nombreP='Z'
+)
 ```
 
 # 10. Listar DNI, apellido y nombre de clientes donde el monto total comprado, teniendo en cuenta todas sus facturas, supere $10.000.000.

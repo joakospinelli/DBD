@@ -67,8 +67,6 @@ WHERE (c.nombreCiudad='Villa Elisa') AND (a.razon_social='TAXI Y')
 
 # 6. Listar nombre, apellido, dirección y teléfono de clientes que viajaron con todas las agencias.
 
-*// Este lo pensé como: buscar los viajes de las personas en las agencias - buscar las agencias en las que la persona NO viajó - buscar al cliente que no tenga agencias sin viajar (CONSULTAR)*
-
 ```sql
 SELECT cli.dni
 FROM Cliente cli

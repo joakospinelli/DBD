@@ -10,7 +10,7 @@ ClubJugador=(<ins>codigoClub, DNI</ins>, desde, hasta)
 
 # 1. Reportar nombre y anioFundacion de aquellos clubes de la ciudad de La Plata que no poseen estadio.
 
-*// 2 soluciones posibles (CONSULTAR)*
+*// 2 soluciones posibles*
 
 ```sql
 SELECT Club.nombre, Club.anioFundacion
@@ -37,7 +37,7 @@ WHERE codigoClub NOT IN (
 
 # 2. Listar nombre de los clubes que no hayan tenido ni tengan jugadores de la ciudad de Berisso.
 
-*// Capaz lo podría hacer sin un IN (CONSULTAR)*
+*// Capaz lo podría hacer sin un IN. Quedaría como un NOT EXISTS como el del ej 1*
 
 ```sql
 SELECT Club.nombre
@@ -63,8 +63,6 @@ WHERE Club.nombre = 'Gimnasia y Esgrima La Plata'
 
 # 4. Mostrar DNI, nombre y apellido de aquellos jugadores que tengan más de 29 años y hayan jugado o juegan en algún club de la ciudad de Córdoba.
 
-*// Creo que debería usar un DISTINCT porque un jugador puede haber jugado en más de un club de Córdoba, entonces se repetiría (CONSULTAR)*
-
 ```sql
 SELECT DISTINCT j.dni, j.nombre, j.apellido
 FROM Jugador j
@@ -78,7 +76,7 @@ WHERE (j.edad > 29) AND (c.nombre = 'Córdoba')
 
 *// En el join con ClubJugador necesito que sea un LEFT JOIN para que cuente los clubes sin jugadores. En el join con Jugador también uso LEFT JOIN para que no me elimine las tuplas de clubes sin jugadores*
 
-*// No estoy seguro de cómo saber quiénes juegan actualmente en ese club. Con la función GETDATE() te da la fecha de hoy pero me parece que sólo funciona en SQL Server o MySQL (CONSULTAR)*
+*// No estoy seguro de cómo saber quiénes juegan actualmente en ese club. Con la función GETDATE() te da la fecha de hoy pero me parece que sólo funciona en SQL Server o MySQL. Otra opción sería hardcodearle la fecha de hoy (CONSULTAR)*
 
 ```sql
 SELECT Club.nombre, AVG(j.edad)

@@ -48,7 +48,7 @@ WHERE matrícula = 'MP 10000'
 
 # 5. Listar nombre, edad, raza, peso de mascotas que tengan supervisiones con el veterinario con matricula : ‘MP 1000’ y con el veterinario con matricula: ‘MN 4545’.
 
-*// El INTERSECT elimina duplicados por defecto, así que no necesito usar DISTINCT en las consultas*
+*// El INTERSECT elimina duplicados por defecto, así que no necesito usar DISTINCT en las consultas (CONSULTAR)*
 
 ```sql
 (

@@ -69,8 +69,6 @@ INTERSECT
 
 # 5. Reportar nombre, género musical y año de creación de bandas que tengan más de 8 integrantes.
 
-*// No sé si está bien el GROUP BY (CONSULTAR)*
-
 ```sql
 SELECT b.nombreBanda, b.género_musical, b.año_creación
 FROM Banda b
@@ -107,7 +105,7 @@ WHERE b.códigoB IN (
 )
 ```
 
-*// Otra solución sin subconsultar (necesita un DISTINCT por si la banda tocó en más de un escenario cubierto)*
+*// Otra solución sin subconsultas (necesita un DISTINCT por si la banda tocó en más de un escenario cubierto)*
 
 ```sql
 SELECT DISTINCT b.nombreBanda, b.género_musical, b.año_creación

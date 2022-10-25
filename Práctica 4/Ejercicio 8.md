@@ -20,8 +20,6 @@ WHERE (i.ciudad = 'La Plata') AND (tp.fecha BETWEEN '2019-01-01' AND '2019-12-31
 
 # 2. Reportar nombre y descripción de equipos que solo se hayan inscripto en torneos de 2018.
 
-*// Se podría hacer también con un EXCEPT o dos NOT IN (CONSULTAR)*
-
 ```sql
 SELECT e.nombreE, e.descripción
 FROM Equipo e
@@ -50,8 +48,6 @@ WHERE (ins.asistió = True) AND (l.nombre = 'La Salada, Coronel Granada') AND i.
 ```
 
 # 4. Reportar nombre, y descripción de equipos que tengan al menos 5 integrantes. Ordenar por nombre y descripción.
-
-*// No sé si es necesario el GROUP BY acá (CONSULTAR)*
 
 ```sql
 SELECT e.nombreE, e.descripción
@@ -125,7 +121,7 @@ EXCEPT
 
 # 9. Listar DNI, nombre, apellido, ciudad y email de integrantes que ganaron algún torneo que se disputó en la laguna con nombre: ‘Laguna de Chascomús’.
 
-*// 2 soluciones posibles (CONSULTAR)*
+*// 2 soluciones posibles*
 
 ```sql
 SELECT dni, nombre, apellido, ciudad

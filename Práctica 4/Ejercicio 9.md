@@ -60,8 +60,6 @@ UNION
 
 # 5. Listar nombre de equipo y datos personales de líderes de equipos que no tengan empleados asignados y trabajen con tecnología ‘Java’.
 
-*// 2 soluciones posibles (CONSULTAR)*
-
 ```sql
 SELECT e.nombreE, emp.nombre, emp.apellido, emp.dni, emp.dirección
 FROM Empleado emp
@@ -127,8 +125,6 @@ INTERSECT
 ```
 
 # 9. Listar nombre, descripción, fecha de inicio, nombre y apellido de responsables de proyectos a finalizar durante 2019.
-
-*// No sé si 'proyectos a finalizar' sería con la fechaFin o con la fechaEstimada (CONSULTAR)*
 
 ```sql
 SELECT p.nombreP, p.descripción, p.fechaInicioP, emp.nombre, emp.apellido

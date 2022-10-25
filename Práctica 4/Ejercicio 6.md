@@ -62,14 +62,14 @@ EXCEPT
 
 # 5. Listar para cada repuesto nombre, stock y cantidad de técnicos distintos que lo utilizaron. Si un repuesto no participó en alguna reparación igual debe aparecer en dicho listado.
 
-*// No sé cómo buscar los Técnicos distintos, creo que con el DISTINCT no es suficiente (CONSULTAR)*
+*// No sé cómo buscar los Técnicos distintos, creo que con el DISTINCT no es suficiente si un mismo técnico lo usó varias veces en distintas reparaciones (CONSULTAR)*
 
 ```sql
 SELECT DISTINCT r.nombre, r.stock, COUNT(*) AS Técnicos
 FROM Repuesto r
 LEFT JOIN RepuestoReparación rr ON (rr.codRep = r.codRep)
 LEFT JOIN Reparación rep ON (rep.nroReparac = rr.nroReparac)
-GROUP BY r.nombre, r.stock
+GROUP BY r.codRep, r.nombre, r.stock
 ```
 
 # 6. Listar nombre y especialidad del técnico con mayor cantidad de reparaciones realizadas y el técnico con menor cantidad de reparaciones.
@@ -118,8 +118,6 @@ WHERE r.stock > 0 AND r.codRep NOT IN (
 # 8. Proyectar precio, fecha y precio total de aquellas reparaciones donde se utilizó algún repuesto con precio en el momento de la reparación mayor a $1000 y menor a $5000.
 
 *// Pongo el DISTINCT porque podría haber una reparación con más de un producto entre $1000 y $5000*
-
-*// Dos soluciones posibles (CONSULTAR)*
 
 ```sql
 SELECT DISTINCT rep.precio_total, rep.fecha

@@ -16,8 +16,6 @@ PROFESOR-CURSO = (<ins>DNI, Cod_Curso</ins>, Fecha_Desde, Fecha_Hasta)
 
 # 1. Listar DNI, legajo y apellido y nombre de todos los alumnos que tegan año ingreso inferior a 2014.
 
-*// En estos siempre hay que hacer el INNER JOIN de Alumno/Profesor con Persona ??? (CONSULTAR)*
-
 ```sql
 SELECT a.dni, a.legajo, p.apellido, p.nombre
 FROM Alumno a
@@ -50,9 +48,10 @@ WHERE (ac.año = 2019) AND (c.nombre = 'Diseño de Bases de Datos')
 
 # 4. Listar el DNI, Apellido, Nombre y Calificación de aquellos alumnos que obtuvieron una calificación superior a 9 en los cursos que dicta el profesor “Juan Garcia”. Dicho listado deberá estar ordenado por Apellido.
 
-*// Uso DISTINCT porque un alumno se podría haber sacado 9 en más de una materia de Juan García, pero no lo quiero repetir*
+*// Uso DISTINCT porque un alumno se podría haber sacado 9 en más de una materia de Juan García*
 
 *// Acá me trabé con tantos joins. No sé si está bien hacer 2 INNER JOIN con Persona; uno para los alumnos y otro para el profesor (CONSULTAR)*
+
 ```sql
 SELECT DISTINCT a.dni, p.apellido, p.nombre, ac.calificación
 FROM Alumno a
@@ -69,7 +68,7 @@ ORDER BY p.apellido
 
 *// LEFT JOIN con Título-Profesor porque podría haber profesores sin títulos*
 
-*// 2 soluciones posibles (CONSULTAR)*
+*// 2 soluciones posibles*
 
 ```sql
 SELECT prof.dni, p.apellido, p.nombre, prof.matrícula
@@ -108,8 +107,6 @@ GROUP BY prof.dni, p.apellido, p.nombre
 
 # 7. Listar Nombre, Descripción del curso que posea más alumnos inscriptos y del que posea menos alumnos inscriptos durante 2019.
 
-*// Para conseguir el máximo y el mínimo necesito sí o sí un UNION o podría usar MIN() o MAX() ?? (Consultar)*
-
 *// Se me ocurrió usar un UNION ALL por si fuesen el mismo*
 
 ```sql
@@ -140,18 +137,29 @@ GROUP BY prof.dni, p.apellido, p.nombre
 
 *// Misma duda que en el ej6*
 
-*// Capaz que podría hacerlo sin el NOT IN o reemplazarlo por un NOT EXISTS (CONSULTAR)*
-
 ```sql
 SELECT a.dni, p.apellido, p.nombre, a.legajo
 FROM Alumno a
 INNER JOIN Persona p ON (p.dni = a.dni)
 LEFT JOIN Alumno-Curso ac ON (ac.dni = a.dni)
 LEFT JOIN Curso c ON (c.cod_curso = ac.cod_curso)
-WHERE (ac.nombre LIKE '%BD' and ac.año = 2018) AND a.dni NOT IN (
+WHERE (ac.nombre LIKE '%BD%' and ac.año = 2018) AND a.dni NOT IN (
     SELECT ac.dni
     FROM Alumno-Curso ac
     WHERE ac.año = 2019
+)
+```
+
+```sql
+SELECT a.dni, p.apellido, p.nombre, a.legajo
+FROM Alumno a
+INNER JOIN Persona p ON (p.dni = a.dni)
+LEFT JOIN Alumno-Curso ac ON (ac.dni = a.dni)
+LEFT JOIN Curso c ON (ac.dni = a.dni)
+WHERE (ac.nombre LIKE '%BD%' and ac.año = 2018) AND NOT EXISTS (
+    SELECT *
+    FROM Alumno-Curso ac2
+    WHERE (ac2.año = 2019) AND (ac.dni = a.dni)
 )
 ```
 
