@@ -23,7 +23,7 @@ FROM Veterinario
 WHERE matrícula NOT IN (
     SELECT matrícula
     FROM Supervisión
-    WHERE fechaSale IS NOT NULL
+    WHERE fechaSale IS NULL
 )
 ```
 
