@@ -20,7 +20,7 @@ JugadoresRiver <= Jugador |x| [ π <sub>dni</sub> ( ClubJugador |x| [ π<sub>cod
 
 JugadoresBoca <= Jugador |x| [ π <sub>dni</sub> ( ClubJugador |x| [ π<sub>codigoClub</sub> ( σ <sub>nombre='Boca Juniors'</sub> (Club)) ]) ]
 
-JugadoresRiver U JugadoresBoca
+JugadoresRiver ∩ JugadoresBoca
 
 # 3. Listar información de todos los clubes donde se desempeñó el jugador: Marcelo Gallardo. Indicar nombre, año de fundación y localidad del club.
 
@@ -36,11 +36,13 @@ JugadoresMenor25 <= π <sub>dni</sub> (σ <sub>edad<=25</sub> (Jugador))
 
 JugadoresJunin <= Jugador |x| π <sub>dni</sub> (ClubJugador |x| [ π<sub>codigoCiudad</sub> (σ <sub>nombre='Junin'</sub> (Ciudad)) ])
 
-π <sub>dni, nombre, apellido</sub> (JugadoresMenor25 U JugadoresJunin)
+π <sub>dni, nombre, apellido</sub> (JugadoresMenor25 ∩ JugadoresJunin)
 
 *// Otra opción*
 
-π<sub>dni, nombre, apellido</sub> [ σ <sub>edad <= 25</sub> (Jugador) |x| π <sub>dni</sub> (ClubJugador |x| [ π<sub>codigoCiudad</sub> (σ <sub>nombre = 'Junin'</sub> (Ciudad)) ]) ]
+ClubesJunin <= Club |x| π<sub>codigoCiudad</sub> (σ <sub>nombre = 'Junin'</sub> (Ciudad))
+
+π<sub>dni, nombre, apellido</sub> [ σ <sub>edad <= 25</sub> (Jugador) |x| π <sub>dni</sub> (ClubJugador |x| [ π<sub>codigoClub</sub> (ClubesJunin)) ]) ]
 
 # 5. Mostrar el nombre de los clubes que tengan jugadores de la ciudad de Chivilcoy mayores de 25 años.
 
@@ -50,7 +52,7 @@ JugadoresMayor25 <= σ <sub>edad>25</sub> (Jugador) |x| [ π<sub>codigoCiudad</s
 
 # 6. Reportar el nombre y apellido de aquellos jugadores que hayan jugado en todos los clubes.
 
-π<sub>nombre,apellido</sub> [ ( π <sub>nombre,apellido,dni</sub> (Jugador) |x| π <sub>dni,codigoClub</sub> (ClubJugador) |x| π <sub>codigoClub</sub> (Club)) % π<sub>codigoClub</sub> (Club) ]
+π<sub>nombre,apellido</sub> [ ( π <sub>nombre,apellido,dni</sub> (Jugador) |x| π <sub>dni,codigoClub</sub> (ClubJugador)) % π<sub>codigoClub</sub> (Club) ]
 
 # 7. Listar nombre de los clubes que no hayan tenido ni tengan jugadores de la ciudad de La Plata.
 

@@ -93,6 +93,7 @@ le tengo el re miedo a desaprobar así que me hice este apunte para leerlo todas
 - Cuando el enunciado diga algo de ***todos*** (como *"clientes que hayan comprado todos los productos"*), hay que usar 2 NOT EXISTS, y adentro del último se hacen las consultas de coincidencias y/o condiciones
 - Si en el SELECT mostramos algo además de una función de agregación, en el GROUP BY tenemos que escribir todos los elementos que queremos
 - Si hay que buscar algo que cumpla con una condición y/o otra, conviene usar siempre UNION/INTERSECT en vez de AND/OR en el WHERE
+- Si dice **"o"** uso unión; si dice **"y"** uso intersección; si dice **"y no"** uso diferencia
 - Las funciones de agregación no siempre van con un GROUP BY (EJ: cuando se usa una sola tabla)
 - Los GROUP BY hay que agruparlos siempre por clave primaria
 - Cuando el enunciado diga algo de encontrar el mayor, hay veces que es más efectivo usar un `>= all` antes que un `MAX()` (EJ: si tenemos que contar algo, podemos hacer un COUNT(*) y en el HAVING poner una subconsulta `>= all`)
@@ -100,5 +101,7 @@ le tengo el re miedo a desaprobar así que me hice este apunte para leerlo todas
 - La función para obtener la fecha de hoy es `NOW()`
 - Cuando hay que hacer un **INSERT/UPDATE/DELETE** usando valores de otra tabla, conviene siempre usar una subconsulta en vez de un INNER JOIN (EJ: usar un IN en el WHERE de una actualización o una eliminación, en vez de hacer un join para encontrar el valor que coincide con la otra tabla)
 - Si hay que eliminar una tupla de una tabla, primero hay que eliminarla de todas las tablas que la estén referenciando con una clave foránea
+- El LEFT JOIN se usa cuando hay que unir dos tablas pero podríamos necesitar casos en los que no coincidan (EJ: para contar la cantidad de veces que cada elemento de Tabla A aparece en Tabla B, tenemos que usar un LEFT JOIN por si hay elementos de A que **nunca** aparezcan en B; si uso un INNER JOIN sólo voy a contar los que aparecen al menos una vez)
+- Puedo usar un DISTINCT adentro del COUNT para que sólo cuente las veces únicas en las que aparece el valor de un elemento
 
 **SIEMPRE ME OLVIDO DEL SOME Y ALL PARA EL WHERE, ACORDARSE DE USARLOS**
