@@ -8,10 +8,6 @@ Recital(<ins>fecha,hora,nroEscenario</ins>, codigoB (fk))
 
 # 1. Listar DNI, nombre, apellido,dirección y email de integrantes nacidos entre 1980 y 1990 y hayan realizado algún recital durante 2018.
 
-*// Está bien con tener las 2 condiciones en el WHERE o necesito un IN para saber lo de los recitales en 2018 ??? (CONSULTAR)*
-
-*// Si está bien lo de las condiciones en el WHERE necesito un DISTINCT porque puede haber tocado más de un recital en 2018*
-
 ```sql
 SELECT DISTINCT i.dni, i.nombre, i.apellido, i.dirección, i.email
 FROM Integrante i

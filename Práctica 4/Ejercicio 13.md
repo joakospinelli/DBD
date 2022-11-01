@@ -82,3 +82,12 @@ FROM Entrenamiento ent
 INNER JOIN Entrenador e ON (e.idEntrenador = ent.idEntrenador)
 WHERE e.nombreEntrenador = 'Juan Pérez'
 ```
+
+```sql
+DELETE FROM Entrenamiento
+WHERE idEntrenador IN (
+    SELECT idEntrenador
+    FROM Entrenador
+    WHERE nombreEntrenador = 'Juan Pérez'
+)
+```
