@@ -48,18 +48,16 @@ WHERE matrícula = 'MP 10000'
 
 # 5. Listar nombre, edad, raza, peso de mascotas que tengan supervisiones con el veterinario con matricula : ‘MP 1000’ y con el veterinario con matricula: ‘MN 4545’.
 
-*// El INTERSECT elimina duplicados por defecto, así que no necesito usar DISTINCT en las consultas (CONSULTAR)*
-
 ```sql
 (
-    SELECT m.nombre, m.edad, m.raza, m.peso
+    SELECT DISTINCT m.nombre, m.edad, m.raza, m.peso
     FROM Mascota m
     INNER JOIN Supervisión s ON (s.codMascota = m.codMascota)
     WHERE s.matrícula = 'MP 1000'
 )
 INTERSECT
 (
-    SELECT m.nombre, m.edad, m.raza, m.peso
+    SELECT DISTINCT m.nombre, m.edad, m.raza, m.peso
     FROM Mascota m
     INNER JOIN Supervisión s ON (s.codMascota = m.codMascota)
     WHERE s.matrícula = 'MN 4545'

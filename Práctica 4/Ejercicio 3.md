@@ -76,22 +76,18 @@ WHERE (j.edad > 29) AND (c.nombre = 'Córdoba')
 
 *// En el join con ClubJugador necesito que sea un LEFT JOIN para que cuente los clubes sin jugadores. En el join con Jugador también uso LEFT JOIN para que no me elimine las tuplas de clubes sin jugadores*
 
-*// No estoy seguro de cómo saber quiénes juegan actualmente en ese club. Con la función GETDATE() te da la fecha de hoy pero me parece que sólo funciona en SQL Server o MySQL. Otra opción sería hardcodearle la fecha de hoy (CONSULTAR)*
-
 ```sql
 SELECT Club.nombre, AVG(j.edad)
 FROM Club
 LEFT JOIN ClubJugador cj ON (cj.códigoClub = Club.códigoClub)
 LEFT JOIN Jugador j ON (j.dni = cj.dni)
-WHERE ( cj.hasta > GETDATE() )
+WHERE ( cj.hasta > NOW() )
 GROUP BY Club.nombre
 ```
 
 # 6. Listar para cada jugador: nombre, apellido, edad y cantidad de clubes diferentes en los que jugó. (incluido el actual)
 
 *// LEFT JOIN porque podría haber jugadores sin equipo*
-
-*// Acá tengo una duda con el enunciado porque si la clave de CJ es Club-DNI entonces cada vez que aparezca un jugador va a ser en un club diferente (CONSULTAR)*
 
 ```sql
 SELECT j.nombre, j.apellido, j.edad, COUNT(*)
@@ -131,8 +127,6 @@ WHERE NOT EXISTS (
 ```
 
 # 9. Agregar con codigoClub 1234 el club "Estrella de Berisso" que se fundó en 1921 y que pertenece a la ciudad de Berisso. Puede asumir que el codigoClub 1234 no existe en la tabla Club.
-
-*// No sé si está bien la consulta dentro del INSERT (CONSULTAR)*
 
 ```sql
 INSERT INTO Club (

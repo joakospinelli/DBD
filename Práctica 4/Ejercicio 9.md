@@ -38,8 +38,6 @@ HAVING COUNT(*) > 1
 
 # 4. Listar DNI, nombre, apellido, teléfono y dirección de todos los empleados que trabajan en el proyecto con nombre ‘Proyecto X’. No es necesario informar responsable y líderes.
 
-*// Si puedo poner un OR en la condición ON del INNER JOIN no tengo que hacer la unión (CONSULTAR)*
-
 ```sql
 (
     SELECT emp.dni, emp.nombre, emp.apellido, emp.teléfono, emp.dirección

@@ -209,8 +209,6 @@ INSERT INTO Título-Profesor(
 
 # 10. Modificar el estado civil del alumno cuyo legajo es ‘2020/09’, el nuevo estado civil es divorciado.
 
-*// No sé cuál sería la mejor manera de hacer el UPDATE WHERE (CONSULTAR)*
-
 ```sql
 UPDATE Persona
 SET estado_civil = 'Divorciado'
@@ -219,13 +217,6 @@ WHERE dni = (
     FROM Alumno
     WHERE legajo = '2020/09'
 )
-```
-
-```sql
-UPDATE Persona p
-INNER JOIN Alumno a ON (p.dni = a.dni)
-SET p.estado_civil = 'Divorciado'
-WHERE a.legajo = '2020/09'
 ```
 
 # 11. Dar de baja el alumno con DNI 30568989. Realizar todas las bajas necesarias para no dejar el conjunto de relaciones en estado inconsistente.

@@ -67,8 +67,6 @@ le tengo el re miedo a desaprobar así que me hice este apunte para leerlo todas
 - Si la relación es *" A (0/1,N) - B(0/1,N"*, entonces se crea una tabla con dos claves foráneas apuntando a las dos tablas; **la clave primaria se forma por las dos claves foráneas**
 - Los atributos de la relación se quedan en la tabla (si se crea una nueva) y podría llegar a formar la clave primaria, o se van a la tabla que tenga la clave foránea hacia la otra
 
-**ACÁ SIEMPRE TUVE LA DUDA DE SI CUANDO USAMOS UNA CLAVE FORÁNEA COMO ID SE TIENE QUE MARCAR COMO (Fk) O NO, PORQUE EN LOS EJERCICIOS DE AR Y SQL NO LO HACE**
-
 # Álgebra relacional
 
 - Selección (σ): devuelve las tuplas de la tabla que cumplan con la condición.
@@ -93,6 +91,14 @@ le tengo el re miedo a desaprobar así que me hice este apunte para leerlo todas
 - Decidí no usar ***nunca*** el NATURAL JOIN porque no sé cómo funciona si hago varios anidados
 - Las subconsultas de un EXISTS pueden usar los campos de las tablas de afuera (no sé si eso funciona con las demás subconsultas)
 - Cuando el enunciado diga algo de ***todos*** (como *"clientes que hayan comprado todos los productos"*), hay que usar 2 NOT EXISTS, y adentro del último se hacen las consultas de coincidencias y/o condiciones
-- Los GROUP BY hay que agruparlos siempre por clave primaria
 - Si en el SELECT mostramos algo además de una función de agregación, en el GROUP BY tenemos que escribir todos los elementos que queremos
 - Si hay que buscar algo que cumpla con una condición y/o otra, conviene usar siempre UNION/INTERSECT en vez de AND/OR en el WHERE
+- Las funciones de agregación no siempre van con un GROUP BY (EJ: cuando se usa una sola tabla)
+- Los GROUP BY hay que agruparlos siempre por clave primaria
+- Cuando el enunciado diga algo de encontrar el mayor, hay veces que es más efectivo usar un `>= all` antes que un `MAX()` (EJ: si tenemos que contar algo, podemos hacer un COUNT(*) y en el HAVING poner una subconsulta `>= all`)
+- Si tenemos que buscar algo que sea *mayor* que todos y usamos un `>= all` como el anterior, porque su propio valor se va a encontrar en la subconsulta entonces nunca va a ser mayor que todos
+- La función para obtener la fecha de hoy es `NOW()`
+- Cuando hay que hacer un **INSERT/UPDATE/DELETE** usando valores de otra tabla, conviene siempre usar una subconsulta en vez de un INNER JOIN (EJ: usar un IN en el WHERE de una actualización o una eliminación, en vez de hacer un join para encontrar el valor que coincide con la otra tabla)
+- Si hay que eliminar una tupla de una tabla, primero hay que eliminarla de todas las tablas que la estén referenciando con una clave foránea
+
+**SIEMPRE ME OLVIDO DEL SOME Y ALL PARA EL WHERE, ACORDARSE DE USARLOS**
