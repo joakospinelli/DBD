@@ -18,8 +18,6 @@ EntrenadorC2 <= Entrenador |x| [ π <sub>IdEntrenador</sub> (Entrenamiento |x| [
 
 # 2- Listar todos los clubes en los que entrena el entrenador “Marcos Perez”. Informar nombre del club y ciudad.
 
-*// Capaz que hay una manera más fácil de resolverlo que no sea anidando |x| como un psicópata (CONSULTAR)*
-
 π <sub>nombreClub, ciudad</sub> (Club |x| [ π <sub>IdClub</sub> (Complejo |x| [ π <sub>IdComplejo</sub> (Cancha |x| [ π <sub>idCancha</sub> (Entrenamiento |x| [ π <sub>IdEntrenador</sub> ( σ <sub>nombreEntrenador = 'Marcos Perez'</sub> (Entrenador)) ]) ]) ]) ])
 
 # 3- Eliminar los entrenamientos del entrenador ‘Juan Perez’.

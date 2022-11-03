@@ -74,11 +74,11 @@ WHERE e.nombreEntrenador = 'Marcos Pérez'
 
 # 6- Eliminar los entrenamientos del entrenador ‘Juan Perez’
 
-*// No sé si está bien el DELETE con INNER JOIN (CONSULTAR)*
-
 ```sql
-DELETE ent
-FROM Entrenamiento ent
-INNER JOIN Entrenador e ON (e.idEntrenador = ent.idEntrenador)
-WHERE e.nombreEntrenador = 'Juan Pérez'
+DELETE FROM Entrenamiento ent
+WHERE ent.idEntrenador = (
+    SELECT e.idEntrenador
+    FROM Entrenador e
+    WHERE e.nombreEntrenador = 'Juan Pérez'
+)
 ```
